@@ -1,32 +1,32 @@
 @echo off
 echo ============================
-echo 启动 Spring Boot 后端服务...
+echo Starting Spring Boot backend service...
 echo ============================
 cd backend
 
-REM 编译并启动后端（建议已配置好target/*.jar输出路径）
+REM Build and start the backend (make sure target/*.jar is generated)
 mvn clean package
 
-REM 查找jar包名（假设只有一个jar包）
+REM Find the jar file name (assuming there is only one jar file)
 for %%i in (target\*.jar) do set JAR_NAME=%%i
 
-start "Spring Boot 后端" cmd /k java -jar %JAR_NAME%
+start "Spring Boot Backend" cmd /k java -jar %JAR_NAME%
 
 cd ..
 
-REM 等待后端启动（可根据实际情况调整秒数）
-echo 等待后端启动...
+REM Wait for the backend to start (adjust the seconds as needed)
+echo Waiting for backend to start...
 timeout /t 10
 
 echo ============================
-echo 启动前端服务...
+echo Starting frontend service...
 echo ============================
 cd frontend
 
-REM 安装依赖
+REM Install dependencies
 npm install
 
-REM 启动前端
+REM Start frontend
 npm start
 
 pause
